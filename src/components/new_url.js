@@ -14,6 +14,7 @@ class New_URL extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // console.log(this.props);
   }
 
   // this monitors the change and listen to each input value
@@ -24,7 +25,6 @@ class New_URL extends Component {
     this.setState({
       [field]: value
     })
-    console.log(this.state);
   }
 
 	// this triggers addNewURL() and empties the form

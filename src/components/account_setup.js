@@ -7,15 +7,15 @@ class Account_Setup extends Component {
     return (
       <div className="App">
         <h2>Account Setup</h2>
-        <New_Website />
-        <New_Source />
-        <New_Medium />
+        <NewWebsite />
+        <NewSource />
+        <NewMedium />
       </div>
     );
   }
 }
 
-class New_Website extends Component {
+class NewWebsite extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -60,7 +60,7 @@ class New_Website extends Component {
   }
 }
 
-class New_Source extends Component {
+class NewSource extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -105,7 +105,7 @@ class New_Source extends Component {
   }
 }
 
-class New_Medium extends Component {
+class NewMedium extends Component {
   constructor(props) {
     super(props)
     this.state = {

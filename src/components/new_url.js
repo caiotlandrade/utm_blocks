@@ -32,7 +32,7 @@ class New_URL extends Component {
   handleSubmit(event) {
 		event.preventDefault();
 		// this calls the function on main component to add the new entry
-    this.props.addNewDefault(  this.state.newOriginal_url, 
+    this.props.addNewURL(  this.state.newOriginal_url, 
                             this.state.newCampaign_source, 
                             this.state.newCampaign_medium, 
                             this.state.newCampaign_name, 
@@ -50,7 +50,8 @@ class New_URL extends Component {
   render() {
     let websitesArray = this.props.websites;
     let sourcesArray = this.props.sources;
-    let mediaArray = this.props.media
+    let mediaArray = this.props.media;
+    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -59,6 +60,7 @@ class New_URL extends Component {
           <label>
             <select   data-field="newOriginal_url" 
                       className="form-control" 
+                      value={this.state.newOriginal_url}
                       onChange={this.handleChange} 
                       required>
               <option value="">
@@ -78,6 +80,7 @@ class New_URL extends Component {
           <label>
             <select   data-field="newCampaign_source" 
                       className="form-control" 
+                      value={this.state.newCampaign_source}
                       onChange={this.handleChange} 
                       required>
               <option value="">
@@ -97,6 +100,7 @@ class New_URL extends Component {
           <label>
             <select   data-field="newCampaign_medium" 
                       className="form-control" 
+                      value={this.state.newCampaign_medium}
                       onChange={this.handleChange} 
                       required>
               <option value="">

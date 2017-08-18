@@ -62,7 +62,8 @@ class App_Header_Nav extends Component {
   }
 
 
-  // build functions for the forms
+  // *** FUNCTIONS FOR THE FORMS *** \\
+
   // this function ads a new URL to the urls database and plug the response to the state
   addNewURL(  newOriginal_url, 
               newCampaign_source, 
@@ -105,7 +106,6 @@ class App_Header_Nav extends Component {
   }
 
   // this function ads a new URL to the urls database and plug the response to the state
-  // addNewWebsite
   addNewWebsite(newWebsite) {
     let websitesCopy = this.state.websites; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
@@ -123,11 +123,10 @@ class App_Header_Nav extends Component {
       }
     );
     alert(newWebsite);
-    console.log(this.state.websites);
+    console.log(this.state);
   }
 
   // this function ads a new URL to the urls database and plug the response to the state
-  // addNewSource
   addNewSource(newSource) {
     let sourcesCopy = this.state.sources; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
@@ -145,11 +144,10 @@ class App_Header_Nav extends Component {
       }
     );
     alert(newSource);
-    console.log(this.state.sources);
+    console.log(this.state);
   }
 
   // this function ads a new URL to the urls database and plug the response to the state
-  // addNewMedium
   addNewMedium(newMedium) {
     let mediaCopy = this.state.media; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
@@ -163,11 +161,11 @@ class App_Header_Nav extends Component {
     })
     this.setState(
       {
-        sources: mediaCopy
+        medium: mediaCopy
       }
     );
     alert(newMedium);
-    console.log(this.state.media);
+    console.log(this.state);
   }
 
 
@@ -178,7 +176,7 @@ class App_Header_Nav extends Component {
           <h2>Header</h2>
         </div>
         <div>
-          <div><Link to="/url_polist"> URL_List </Link></div>
+          <div><Link to="/url_list"> URL_List </Link></div>
           <div><Link to="/account_setup"> Account_Setup </Link></div>
           <div><Link to="/settings"> Settings </Link></div>
           <div><Link to="/new_url"> New_URL </Link></div>

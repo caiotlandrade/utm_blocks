@@ -22,6 +22,7 @@ class New_URL extends Component {
   handleChange(event) {
     let field = event.target.dataset.field;
     let value = event.target.value;
+    console.log(value);
     this.setState({
       [field]: value
     })
@@ -31,7 +32,7 @@ class New_URL extends Component {
   handleSubmit(event) {
 		event.preventDefault();
 		// this calls the function on main component to add the new entry
-    this.props.addNewURL(  this.state.newOriginal_url, 
+    this.props.addNewDefault(  this.state.newOriginal_url, 
                             this.state.newCampaign_source, 
                             this.state.newCampaign_medium, 
                             this.state.newCampaign_name, 
@@ -47,30 +48,70 @@ class New_URL extends Component {
   }
 
   render() {
+    let websitesArray = this.props.websites;
+    let sourcesArray = this.props.sources;
+    let mediaArray = this.props.media
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+
           <p>Website URL</p>
-          <input  data-field="newOriginal_url"
-                  type="text"
-                  className="form-control"
-                  placeholder="The full website URL"
-                  value={this.state.newOriginal_url}
-                  onChange={this.handleChange} />
+          <label>
+            <select   data-field="newOriginal_url" 
+                      className="form-control" 
+                      onChange={this.handleChange} 
+                      required>
+              <option value="">
+                  Select website
+              </option>
+            {websitesArray.map((websiteObject, i) => {
+              return (
+                <option name={websiteObject.website} value={websiteObject.website}>
+                  {websiteObject.website}
+                </option>
+              )
+            })}
+            </select>
+          </label>
+
           <p>Campaign Source</p>
-          <input  data-field="newCampaign_source"
-                  type="text"
-                  className="form-control"
-                  placeholder="The traffic referrer"
-                  value={this.state.newCampaign_source}
-                  onChange={this.handleChange} />
+          <label>
+            <select   data-field="newCampaign_source" 
+                      className="form-control" 
+                      onChange={this.handleChange} 
+                      required>
+              <option value="">
+                  Select source
+              </option>
+            {sourcesArray.map((sourceObject, i) => {
+              return (
+                <option name={sourceObject.source} value={sourceObject.source}>
+                  {sourceObject.source}
+                </option>
+              )
+            })}
+            </select>
+          </label>
+
           <p>Campaign Medium</p>
-          <input  data-field="newCampaign_medium"
-                  type="text"
-                  className="form-control"
-                  placeholder="Marketing medium"
-                  value={this.state.newCampaign_medium}
-                  onChange={this.handleChange} />
+          <label>
+            <select   data-field="newCampaign_medium" 
+                      className="form-control" 
+                      onChange={this.handleChange} 
+                      required>
+              <option value="">
+                  Select medium
+              </option>
+            {mediaArray.map((mediumObject, i) => {
+              return (
+                <option name={mediumObject.medium} value={mediumObject.medium}>
+                  {mediumObject.medium}
+                </option>
+              )
+            })}
+            </select>
+          </label>
+
           <p>Campaign Name</p>
           <input  data-field="newCampaign_name"
                   type="text"
@@ -78,6 +119,7 @@ class New_URL extends Component {
                   placeholder="Product, promo code, or slogan"
                   value={this.state.newCampaign_name}
                   onChange={this.handleChange} />
+
           <p>Campaign Term</p>
           <input  data-field="newCampaign_term"
                   type="text"
@@ -85,6 +127,7 @@ class New_URL extends Component {
                   placeholder="Identify the paid keywords"
                   value={this.state.newCampaign_term}
                   onChange={this.handleChange} />
+
           <p>Campaign Content</p>
           <input  data-field="newCampaign_content"
                   type="text"
@@ -92,6 +135,7 @@ class New_URL extends Component {
                   placeholder="Use to differentiate ad versions"
                   value={this.state.newCampaign_content}
                   onChange={this.handleChange} />
+          
           <span className="input-group-btn">
             <button className="btn btn-primary" type="submit">Add it to the list</button>
           </span>

@@ -7,59 +7,32 @@ class App_Header_Nav extends Component {
   constructor() {
     super();
     this.state = {
-      urls: [
-        {
-          key: 0,
-          created_at: 'now',
-          updated_at: 'now',
-          original_url: 'https://www.example.com',
-          campaign_source: 'google',
-          campaign_medium: 'cpm',
-          campaign_name: 'example',
-          campaign_term: 'ex',
-          campaign_content: 'ex2',
-          final_url: 'https://www.example.com/?utm_source=google&utm_medium=cpc',
-          shortened_url: 'https://goo.gl/ebqs2I',
-          account_key: 0,
-          user_key: 0
-        }
-      ],
-      websites: [
-        {
-          key: 0,
-          created_at: 'now',
-          updated_at: 'now',
-          website: 'https://www.example.com',
-          account_key: 0,
-          user_key: 0
-        }
-      ],
-      sources: [
-        {
-          key: 0,
-          created_at: 'now',
-          updated_at: 'now',
-          source: 'google',
-          account_key: 0,
-          user_key: 0
-        }
-      ],
-      media: [
-        {
-          key: 0,
-          created_at: 'now',
-          updated_at: 'now',
-          medium: 'cpc',
-          account_key: 0,
-          user_key: 0
-        }
-      ]
+      // the initial state is coming now from the server
+      // (while we don't build the database)
+      
     }
     this.addNewURL = this.addNewURL.bind(this);
     this.addNewWebsite = this.addNewWebsite.bind(this);
     this.addNewSource = this.addNewSource.bind(this);
     this.addNewMedium = this.addNewMedium.bind(this);
   }
+
+  // getting the initial state from the server
+  // for now, it's getting a object from the server.js file (not from the DB)
+  componentWillMount() {
+		let initialState = {};
+		axios.get('http://localhost:8080/api/initialState')
+		.then(result => {
+			console.log("success");
+			console.log(result.data);
+			initialState = result.data;
+			this.setState(initialState);
+		})
+		.catch(error => {
+			console.log(error);
+			console.log("error");
+		})
+	}
 
 
   // *** FUNCTIONS FOR THE FORMS *** \\
@@ -170,19 +143,17 @@ class App_Header_Nav extends Component {
 
 
   render() {
-    return (
-      <div>
-        <div className="App">
-          <h2>Header</h2>
+    let views;
+    if (Object.keys(this.state).length === 0) {
+      views = (
+        <div className="col-md-4">
+          <img src="/loading.gif" alt="loading gif" />
         </div>
+      )
+    } else {
+      views = (
         <div>
-          <div><Link to="/url_list"> URL_List </Link></div>
-          <div><Link to="/account_setup"> Account_Setup </Link></div>
-          <div><Link to="/settings"> Settings </Link></div>
-          <div><Link to="/new_url"> New_URL </Link></div>
-        </div>
-        <div className="">
-          {React.cloneElement(this.props.children, 
+          {React.cloneElement(this.props.children,
             {
               // passing all the state params
               urls: this.state.urls,
@@ -196,6 +167,23 @@ class App_Header_Nav extends Component {
               addNewMedium: this.addNewMedium
             }
           )}
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        <div className="App">
+          <h2>Header</h2>
+        </div>
+        <div>
+          <div><Link to="/url_list"> URL_List </Link></div>
+          <div><Link to="/account_setup"> Account_Setup </Link></div>
+          <div><Link to="/settings"> Settings </Link></div>
+          <div><Link to="/new_url"> New_URL </Link></div>
+        </div>
+        <div>
+          {views}
         </div>
       </div>
     );

@@ -141,7 +141,7 @@ class New_URL extends Component {
                   onChange={this.handleChange} />
           
           <span className="input-group-btn">
-            <button className="btn btn-primary" type="submit">Add it to the list</button>
+            <button className="button" type="submit">Add it to the list</button>
           </span>
         </form>
       </div>

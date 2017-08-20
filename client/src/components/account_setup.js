@@ -70,7 +70,7 @@ class NewWebsite extends Component {
                   value={this.props.newWebsite}
                   onChange={this.props.handleChange} />
           <span className="input-group-btn">
-            <button className="btn btn-primary" type="submit">
+            <button className="button" type="submit">
               Add a new website
             </button>
           </span>
@@ -94,7 +94,7 @@ class NewSource extends Component {
                   value={this.props.newSource}
                   onChange={this.props.handleChange} />
           <span className="input-group-btn">
-            <button className="btn btn-primary" type="submit">
+            <button className="button" type="submit">
               Add a new source
             </button>
           </span>
@@ -118,7 +118,7 @@ class NewMedium extends Component {
                   value={this.props.newMedium}
                   onChange={this.props.handleChange} />
           <span className="input-group-btn">
-            <button className="btn btn-primary" type="submit">
+            <button className="button" type="submit">
               Add a new medium
             </button>
           </span>
@@ -140,6 +140,7 @@ class WebsiteList extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
+                            key={website.key}
                             data-key={website.key}
                             data-created_at={website.created_at}
                             data-updated_at={website.updated_at}
@@ -170,6 +171,7 @@ class SourceList extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
+                            key={source.key}
                             data-key={source.key}
                             data-created_at={source.created_at}
                             data-updated_at={source.updated_at}
@@ -200,6 +202,7 @@ class MediumList extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
+                            key={medium.key}
                             data-key={medium.key}
                             data-created_at={medium.created_at}
                             data-updated_at={medium.updated_at}

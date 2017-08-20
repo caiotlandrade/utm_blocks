@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
 import axios from 'axios';
+import './css/foundation.css';
 import './App.css';
 
 class App_Header_Nav extends Component {
@@ -152,7 +153,7 @@ class App_Header_Nav extends Component {
       )
     } else {
       views = (
-        <div>
+        <div className="DO NOT STYLE HERE">
           {React.cloneElement(this.props.children,
             {
               // passing all the state params

@@ -9,7 +9,7 @@ class URL_List extends Component {
         <div className="App">
           <h2>URL list</h2>
           <div>
-            <div><Link to="/new_url"> New_URL </Link></div>
+            <button className="button"><Link to="/new_url"> New_URL </Link></button>
             <URLTable   urls={this.props.urls}
                         websites={this.props.websites}
                         sources={this.props.sources}
@@ -44,6 +44,7 @@ class URLTable extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
+                            key={url.key}
                             data-key={url.key}
                             data-created_at={url.created_at}
                             data-updated_at={url.updated_at}

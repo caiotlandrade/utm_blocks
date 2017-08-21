@@ -147,13 +147,13 @@ class App_Header_Nav extends Component {
     let views;
     if (Object.keys(this.state).length === 0) {
       views = (
-        <div className="col-md-4">
+        <div>
           <img src="/loading.gif" alt="loading gif" />
         </div>
       )
     } else {
       views = (
-        <div className="DO NOT STYLE HERE">
+        <div className="small-12 cell">
           {React.cloneElement(this.props.children,
             {
               // passing all the state params
@@ -174,17 +174,23 @@ class App_Header_Nav extends Component {
 
     return (
       <div>
-        <div className="App">
-          <h2>Header</h2>
-        </div>
-        <div>
-          <div><Link to="/url_list"> URL_List </Link></div>
-          <div><Link to="/account_setup"> Account_Setup </Link></div>
-          <div><Link to="/settings"> Settings </Link></div>
-          <div><Link to="/new_url"> New_URL </Link></div>
-        </div>
-        <div>
-          {views}
+        <header className="App top-bar grid-x">
+          <h2 className="top-bar_logo">Header</h2>
+        </header>
+        <div className="App-body grid-x">
+          <nav className="side_menu vertical menu columns medium-2 small-12 cell">
+            <ul className="small-12">
+              <li className="small-12"><Link to="/url_list"> URL_List </Link></li>
+              <li className="small-12"><Link to="/account_setup"> Account_Setup </Link></li>
+              <li className="small-12"><Link to="/settings"> Settings </Link></li>
+              <li className="small-12"><Link to="/new_url"> New_URL </Link></li>
+            </ul>
+          </nav>
+              <div className="small-12 medium-10 cell">
+                <main className="grid-x">
+                  {views}
+                </main>
+              </div>
         </div>
       </div>
     );

@@ -42,15 +42,41 @@ class Account_Setup extends Component {
 
   render() {
     return (
-      <div className="App">
+
+<div>
+      <div className="small-12 cell">
         <h2>Account Setup</h2>
-        <NewWebsite handleChange={this.handleChange} handleSubmit={this.handleSubmit} newWebsite={this.state.newWebsite} />
-        <WebsiteList websites={this.props.websites} />
-        <NewSource handleChange={this.handleChange} handleSubmit={this.handleSubmit} newSource={this.state.newSource} />
-        <SourceList sources={this.props.sources} />
-        <NewMedium handleChange={this.handleChange} handleSubmit={this.handleSubmit} newMedium={this.state.newMedium} />
-        <MediumList media={this.props.media} />
       </div>
+      <div className="grid-x grid-margin-x">
+        <div className="small-12 medium-6 cell">
+          <NewWebsite handleChange={this.handleChange} handleSubmit={this.handleSubmit} newWebsite={this.state.newWebsite} />
+          <WebsiteList websites={this.props.websites} />
+        </div>
+        <div className="small-12 medium-6 cell">
+          <p>something about this type of entry</p>
+        </div>
+      </div>
+      <div className="grid-x grid-margin-x">
+        <div className="small-12 medium-6 cell">
+          <NewSource handleChange={this.handleChange} handleSubmit={this.handleSubmit} newSource={this.state.newSource} />
+          <SourceList sources={this.props.sources} />
+        </div>
+        <div className="small-12 medium-6 cell">
+          <p>something about this type of entry</p>
+        </div>
+      </div>
+      <div className="grid-x grid-margin-x">
+        <div className="small-12 medium-6 cell">
+          <NewMedium handleChange={this.handleChange} handleSubmit={this.handleSubmit} newMedium={this.state.newMedium} />
+          <MediumList media={this.props.media} />
+        </div>
+        <div className="small-12 medium-6 cell">
+          <p>something about this type of entry</p>
+        </div>
+      </div>
+      </div>
+
+
     );
   }
 }

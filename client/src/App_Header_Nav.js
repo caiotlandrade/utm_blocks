@@ -60,7 +60,6 @@ class App_Header_Nav extends Component {
 		})
 	}
 
-
   // *** FUNCTIONS FOR THE FORMS *** \\
 
   // this function ads a new URL to the urls database and plug the response to the state
@@ -70,16 +69,13 @@ class App_Header_Nav extends Component {
               newCampaign_name, 
               newCampaign_term, 
               newCampaign_content){
-    let newFinal_url = newOriginal_url + 
-                "?utm_source=" + newCampaign_source +
-                ( newCampaign_medium ? ("&utm_medium=" + newCampaign_medium) : '' ) + 
-                ( newCampaign_name ? ("&utm_campaign=" + newCampaign_name) : '' ) + 
-                ( newCampaign_term ? ("&utm_term=" + newCampaign_term) : '' ) + 
-                ( newCampaign_content ? ("&utm_content=" + newCampaign_content) : '' );
-    
-    let urlsCopy = this.state.urls; // copy array before adding new entry
-    // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
-    urlsCopy.push({
+    let newFinal_url =  newOriginal_url + 
+                        "?utm_source=" + newCampaign_source +
+                        ( newCampaign_medium ? ("&utm_medium=" + newCampaign_medium) : '' ) + 
+                        ( newCampaign_name ? ("&utm_campaign=" + newCampaign_name) : '' ) + 
+                        ( newCampaign_term ? ("&utm_term=" + newCampaign_term) : '' ) + 
+                        ( newCampaign_content ? ("&utm_content=" + newCampaign_content) : '' );
+    axios.post('http://localhost:8080/api/url', {
       original_url: newOriginal_url,
       campaign_source: newCampaign_source,
       campaign_medium: newCampaign_medium,
@@ -90,68 +86,75 @@ class App_Header_Nav extends Component {
       account_id: 1,
       user_id: 1
     })
-    this.setState ({
-      urls: urlsCopy
+    .then((response) => {
+      let newObject = response.data;
+      let urlsCopy = Array.from(this.state.urls) // copy array before adding new entry
+      urlsCopy.push(newObject);
+      this.setState({urls: urlsCopy}) 
+    })
+    .catch((error) => {
+      console.log(error);
     });
     alert (newFinal_url);
-    console.log(this.state.urls);
-    
   }
 
-  // this function ads a new URL to the urls database and plug the response to the state
+  // this function ads a new WEBSITE to the websites database and plug the response to the state
   addNewWebsite(newWebsite) {
-    let websitesCopy = this.state.websites; // copy array before adding new entry
-    // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
-    websitesCopy.push({
+    axios.post('http://localhost:8080/api/website', {
       website: newWebsite,
       account_id: 1,
       user_id: 1
     })
-    this.setState(
-      {
-        websites: websitesCopy
-      }
-    );
-    alert(newWebsite);
-    console.log(this.state);
+    .then((response) => {
+      let newObject = response.data;
+      let websitesCopy = Array.from(this.state.websites) // copy array before adding new entry
+      websitesCopy.push(newObject);
+      this.setState({websites: websitesCopy}) 
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
-  // this function ads a new URL to the urls database and plug the response to the state
+  // this function ads a new SOURCE to the sources database and plug the response to the state
   addNewSource(newSource) {
-    let sourcesCopy = this.state.sources; // copy array before adding new entry
-    // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
-    sourcesCopy.push({
+    axios.post('http://localhost:8080/api/source', {
       source: newSource,
       account_id: 1,
       user_id: 1
     })
-    this.setState(
-      {
-        sources: sourcesCopy
-      }
-    );
-    alert(newSource);
-    console.log(this.state);
+    .then((response) => {
+      let newObject = response.data;
+      let sourcesCopy = Array.from(this.state.sources) // copy array before adding new entry
+      sourcesCopy.push(newObject);
+      this.setState({sources: sourcesCopy}) 
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
-  // this function ads a new URL to the urls database and plug the response to the state
+  // this function ads a new MEDIUM to the media database and plug the response to the state
   addNewMedium(newMedium) {
-    let mediaCopy = this.state.media; // copy array before adding new entry
-    // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
-    mediaCopy.push({
+    axios.post('http://localhost:8080/api/medium', {
       medium: newMedium,
       account_id: 1,
       user_id: 1
     })
-    this.setState({
-      media: mediaCopy
+    .then((response) => {
+      let newObject = response.data;
+      let mediaCopy = Array.from(this.state.media) // copy array before adding new entry
+      mediaCopy.push(newObject);
+      this.setState({media: mediaCopy}) 
+    })
+    .catch((error) => {
+      console.log(error);
     });
-    alert(newMedium);
-    console.log(this.state);
   }
 
 
   render() {
+    console.log(this.state);
     let views;
     if (Object.keys(this.state.loaded) === false) {
       views = (

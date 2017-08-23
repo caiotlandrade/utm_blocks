@@ -8,6 +8,7 @@ class App_Header_Nav extends Component {
   constructor() {
     super();
     this.state = {
+      account_id: 1,
       user_id: 1,
       websites: [],
       sources: [],
@@ -79,9 +80,6 @@ class App_Header_Nav extends Component {
     let urlsCopy = this.state.urls; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     urlsCopy.push({
-      key: 0,
-      created_at: 'now',
-      updated_at: 'now',
       original_url: newOriginal_url,
       campaign_source: newCampaign_source,
       campaign_medium: newCampaign_medium,
@@ -89,15 +87,12 @@ class App_Header_Nav extends Component {
       campaign_term: newCampaign_term,
       campaign_content: newCampaign_content,
       final_url: newFinal_url,
-      shortened_url: 'https://goo.gl/ebqs2I',
-      account_key: 0,
-      user_key: 0
+      account_id: 1,
+      user_id: 1
     })
-    this.setState (
-      {
-        urls: urlsCopy
-      }
-    );
+    this.setState ({
+      urls: urlsCopy
+    });
     alert (newFinal_url);
     console.log(this.state.urls);
     
@@ -108,12 +103,9 @@ class App_Header_Nav extends Component {
     let websitesCopy = this.state.websites; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     websitesCopy.push({
-      key: 0,
-      created_at: 'now',
-      updated_at: 'now',
-      website: newWebsite,
-      account_key: 0,
-      user_key: 0
+      websites: newWebsite,
+      account_id: 1,
+      user_id: 1
     })
     this.setState(
       {
@@ -129,12 +121,9 @@ class App_Header_Nav extends Component {
     let sourcesCopy = this.state.sources; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     sourcesCopy.push({
-      key: 0,
-      created_at: 'now',
-      updated_at: 'now',
-      source: newSource,
-      account_key: 0,
-      user_key: 0
+      sources: newSource,
+      account_id: 1,
+      user_id: 1
     })
     this.setState(
       {
@@ -150,12 +139,9 @@ class App_Header_Nav extends Component {
     let mediaCopy = this.state.media; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     mediaCopy.push({
-      key: 0,
-      created_at: 'now',
-      updated_at: 'now',
-      medium: newMedium,
-      account_key: 0,
-      user_key: 0
+      media: newMedium,
+      account_id: 1,
+      user_id: 1
     })
     this.setState({
       medium: mediaCopy

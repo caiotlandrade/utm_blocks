@@ -167,14 +167,14 @@ class WebsiteList extends React.Component {
                   <td>
                     <input  type="checkbox"
                             key={website.id}
-                            data-key={website.id}
+                            data-id={website.id}
                             data-created_at={website.created_at}
                             data-updated_at={website.updated_at}
-                            data-account_key={website.account_id}
-                            data-user_key={website.user_id}
+                            data-account_id={website.account_id}
+                            data-user_id={website.user_id}
                             onChange={() => { this.props.changeCheckBox(website.i) }} />
                   </td>
-                  <td>{website.websites}</td>
+                  <td>{website.website}</td>
                 </tr>
               )
             })}
@@ -198,14 +198,14 @@ class SourceList extends React.Component {
                   <td>
                     <input  type="checkbox"
                             key={source.id}
-                            data-key={source.id}
+                            data-id={source.id}
                             data-created_at={source.created_at}
                             data-updated_at={source.updated_at}
-                            data-account_key={source.account_id}
-                            data-user_key={source.user_id}
+                            data-account_id={source.account_id}
+                            data-user_id={source.user_id}
                             onChange={() => { this.props.changeCheckBox(source.i) }} />
                   </td>
-                  <td>{source.sources}</td>
+                  <td>{source.source}</td>
                 </tr>
               )
             })}
@@ -229,14 +229,14 @@ class MediumList extends React.Component {
                   <td>
                     <input  type="checkbox"
                             key={medium.id}
-                            data-key={medium.id}
+                            data-id={medium.id}
                             data-created_at={medium.created_at}
                             data-updated_at={medium.updated_at}
-                            data-account_key={medium.account_id}
-                            data-user_key={medium.user_id}
+                            data-account_id={medium.account_id}
+                            data-user_id={medium.user_id}
                             onChange={() => { this.props.changeCheckBox(medium.i) }} />
                   </td>
-                  <td>{medium.media}</td>
+                  <td>{medium.medium}</td>
                 </tr>
               )
             })}

@@ -67,8 +67,8 @@ class New_URL extends Component {
               </option>
             {websitesArray.map((websiteObject, i) => {
               return (
-                <option name={websiteObject.websites} value={websiteObject.websites}>
-                  {websiteObject.websites}
+                <option name={websiteObject.website} value={websiteObject.website}>
+                  {websiteObject.website}
                 </option>
               )
             })}
@@ -87,8 +87,8 @@ class New_URL extends Component {
               </option>
             {sourcesArray.map((sourceObject, i) => {
               return (
-                <option name={sourceObject.sources} value={sourceObject.sources}>
-                  {sourceObject.sources}
+                <option name={sourceObject.source} value={sourceObject.source}>
+                  {sourceObject.source}
                 </option>
               )
             })}
@@ -107,8 +107,8 @@ class New_URL extends Component {
               </option>
             {mediaArray.map((mediumObject, i) => {
               return (
-                <option name={mediumObject.media} value={mediumObject.media}>
-                  {mediumObject.media}
+                <option name={mediumObject.medium} value={mediumObject.medium}>
+                  {mediumObject.medium}
                 </option>
               )
             })}

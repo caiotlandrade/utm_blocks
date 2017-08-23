@@ -8,9 +8,12 @@ class App_Header_Nav extends Component {
   constructor() {
     super();
     this.state = {
-      // the initial state is coming now from the server
-      // (while we don't build the database)
-      
+      user_id: 1,
+      websites: [],
+      sources: [],
+      media: [],
+      urls:[],
+      loaded: false,
     }
     this.addNewURL = this.addNewURL.bind(this);
     this.addNewWebsite = this.addNewWebsite.bind(this);
@@ -21,13 +24,34 @@ class App_Header_Nav extends Component {
   // getting the initial state from the server
   // for now, it's getting a object from the server.js file (not from the DB)
   componentWillMount() {
-		let initialState = {};
-		axios.get('http://localhost:8080/api/initialState')
+    // list all initial requests in an array for axios.all()
+    let requests = [
+      // axios.get(`http://localhost:8080/api/website/${this.state.user_id}`),
+      // axios.get(`http://localhost:8080/api/source/${this.state.user_id}`),
+      // axios.get(`http://localhost:8080/api/medium/${this.state.user_id}`),
+      axios.get(`http://localhost:8080/api/url/${this.state.user_id}`),
+    ];
+    // declare variables to handle each separate response
+    // let websitesState;
+    // let sourcesState;
+    // let mediaState;
+    let urlsState;
+    // make all requests at once
+		axios.all(requests)
 		.then(result => {
 			console.log("success");
-			console.log(result.data);
-			initialState = result.data;
-			this.setState(initialState);
+      console.log(result.data);
+      // websitesState = result[0].data;
+      // sourcesState = result[1].data;
+      // mediaState = result[2].data;
+      urlsState = result[0].data;
+			this.setState({
+        // websites: websitesState,
+        // sources: sourcesState,
+        // media: mediaState,
+        urls: urlsState,
+        loaded: true
+      });
 		})
 		.catch(error => {
 			console.log(error);
@@ -133,11 +157,9 @@ class App_Header_Nav extends Component {
       account_key: 0,
       user_key: 0
     })
-    this.setState(
-      {
-        medium: mediaCopy
-      }
-    );
+    this.setState({
+      medium: mediaCopy
+    });
     alert(newMedium);
     console.log(this.state);
   }
@@ -145,7 +167,7 @@ class App_Header_Nav extends Component {
 
   render() {
     let views;
-    if (Object.keys(this.state).length === 0) {
+    if (Object.keys(this.state.loaded) === false) {
       views = (
         <div>
           <img src="/loading.gif" alt="loading gif" />
@@ -180,10 +202,10 @@ class App_Header_Nav extends Component {
         <div className="App-body grid-x">
           <nav className="side_menu vertical menu columns medium-2 small-12 cell">
             <ul className="small-12">
-              <li className="small-12"><Link to="/url_list"> URL_List </Link></li>
-              <li className="small-12"><Link to="/account_setup"> Account_Setup </Link></li>
-              <li className="small-12"><Link to="/settings"> Settings </Link></li>
-              <li className="small-12"><Link to="/new_url"> New_URL </Link></li>
+              <li className="small-12"><Link to="/url_list">URL List</Link></li>
+              <li className="small-12"><Link to="/account_setup">Account Setup</Link></li>
+              <li className="small-12"><Link to="/settings">Settings</Link></li>
+              <li className="small-12"><Link to="/new_url">New URL</Link></li>
             </ul>
           </nav>
               <div className="small-12 medium-10 cell">

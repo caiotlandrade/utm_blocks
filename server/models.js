@@ -19,6 +19,18 @@ const Account = bookshelf.Model.extend({
     tableName: 'accounts',
     users: function () {
         return this.hasMany(User)
+    },
+    websites: function () {
+        return this.hasMany(Website)
+    },
+    sources: function () {
+        return this.hasMany(Source)
+    },
+    media: function () {
+        return this.hasMany(Medium)
+    },
+    urls: function () {
+        return this.hasMany(Url)
     }
 })
 
@@ -30,7 +42,17 @@ const User = bookshelf.Model.extend({
     },
     websites: function () {
         return this.hasMany(Website)
+    },
+    sources: function () {
+        return this.hasMany(Source)
+    },
+    media: function () {
+        return this.hasMany(Medium)
+    },
+    urls: function () {
+        return this.hasMany(Url)
     }
+
 })
 
 //Creating the Website model, and add relations to Account and User models

@@ -16,23 +16,42 @@ Url
     });
 
 // ** CREATE ROUTES ** \\
+// GET Endpoint to retrieve all url records of an user
 router.get('/:user_id', (req, res) => {
-    // const where = {};
-    // for (let key in req.query) {
-    //     if (attributes.includes(key)) {
-    //         where[key] = req.query[key];
-    //     }
-    // }
+    const where = {};
+    for (let key in req.query) {
+        if (attributes.includes(key)) {
+            where[key] = req.query[key];
+        }
+    }
 
-    //Using the verified where object we constructed, we fetch all cars that have the right attributes
     Url.where({user_id: req.params.user_id})
-        .fetchAll()
+        .fetchAll(where)
         .then(urls => {
             console.log(urls);
             res.json(urls.models.map(urls => urls.attributes))
         })
         .catch(error => {
             console.log(error)
+            res.status(500).send(error);
+        })
+});
+
+// POST Endpoint for new url record
+router.post('/', (req, res) => {
+    let newUrl = {};
+    for (let key in req.body) {
+        if (attributes.includes(key)) {
+            newUrl[key] = req.body[key];
+        }
+    }
+
+    new Url(newUrl)
+        .save()
+        .then(url => {
+            res.json(url.attributes);
+        })
+        .catch(error => {
             res.status(500).send(error);
         })
 });

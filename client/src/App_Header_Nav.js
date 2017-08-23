@@ -103,7 +103,7 @@ class App_Header_Nav extends Component {
     let websitesCopy = this.state.websites; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     websitesCopy.push({
-      websites: newWebsite,
+      website: newWebsite,
       account_id: 1,
       user_id: 1
     })
@@ -121,7 +121,7 @@ class App_Header_Nav extends Component {
     let sourcesCopy = this.state.sources; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     sourcesCopy.push({
-      sources: newSource,
+      source: newSource,
       account_id: 1,
       user_id: 1
     })
@@ -139,12 +139,12 @@ class App_Header_Nav extends Component {
     let mediaCopy = this.state.media; // copy array before adding new entry
     // the idea is to make a http request (POST) with all arguments and then push the new added record to the component state
     mediaCopy.push({
-      media: newMedium,
+      medium: newMedium,
       account_id: 1,
       user_id: 1
     })
     this.setState({
-      medium: mediaCopy
+      media: mediaCopy
     });
     alert(newMedium);
     console.log(this.state);

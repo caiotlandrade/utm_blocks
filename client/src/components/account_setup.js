@@ -166,15 +166,15 @@ class WebsiteList extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
-                            key={website.key}
-                            data-key={website.key}
+                            key={website.id}
+                            data-key={website.id}
                             data-created_at={website.created_at}
                             data-updated_at={website.updated_at}
-                            data-account_key={website.account_key}
-                            data-user_key={website.user_key}
+                            data-account_key={website.account_id}
+                            data-user_key={website.user_id}
                             onChange={() => { this.props.changeCheckBox(website.i) }} />
                   </td>
-                  <td>{website.website}</td>
+                  <td>{website.websites}</td>
                 </tr>
               )
             })}
@@ -197,15 +197,15 @@ class SourceList extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
-                            key={source.key}
-                            data-key={source.key}
+                            key={source.id}
+                            data-key={source.id}
                             data-created_at={source.created_at}
                             data-updated_at={source.updated_at}
-                            data-account_key={source.account_key}
-                            data-user_key={source.user_key}
+                            data-account_key={source.account_id}
+                            data-user_key={source.user_id}
                             onChange={() => { this.props.changeCheckBox(source.i) }} />
                   </td>
-                  <td>{source.source}</td>
+                  <td>{source.sources}</td>
                 </tr>
               )
             })}
@@ -228,15 +228,15 @@ class MediumList extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
-                            key={medium.key}
-                            data-key={medium.key}
+                            key={medium.id}
+                            data-key={medium.id}
                             data-created_at={medium.created_at}
                             data-updated_at={medium.updated_at}
-                            data-account_key={medium.account_key}
-                            data-user_key={medium.user_key}
+                            data-account_key={medium.account_id}
+                            data-user_key={medium.user_id}
                             onChange={() => { this.props.changeCheckBox(medium.i) }} />
                   </td>
-                  <td>{medium.medium}</td>
+                  <td>{medium.media}</td>
                 </tr>
               )
             })}

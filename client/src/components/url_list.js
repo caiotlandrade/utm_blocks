@@ -44,12 +44,12 @@ class URLTable extends React.Component {
                 <tr>
                   <td>
                     <input  type="checkbox"
-                            key={url.key}
-                            data-key={url.key}
+                            key={url.id}
+                            data-key={url.id}
                             data-created_at={url.created_at}
                             data-updated_at={url.updated_at}
-                            data-account_key={url.account_key}
-                            data-user_key={url.user_key}
+                            data-account_key={url.account_id}
+                            data-user_key={url.user_id}
                             onChange={() => { this.props.changeCheckBox(url.i) }} />
                   </td>
                   <td>{url.original_url}</td>

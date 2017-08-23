@@ -15,6 +15,7 @@ Url
         attributes = Object.keys(url.attributes);
     });
 
+// ** CREATE ROUTES ** \\
 router.get('/:user_id', (req, res) => {
     // const where = {};
     // for (let key in req.query) {

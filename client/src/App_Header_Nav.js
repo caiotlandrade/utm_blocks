@@ -26,29 +26,29 @@ class App_Header_Nav extends Component {
   componentWillMount() {
     // list all initial requests in an array for axios.all()
     let requests = [
-      // axios.get(`http://localhost:8080/api/website/${this.state.user_id}`),
-      // axios.get(`http://localhost:8080/api/source/${this.state.user_id}`),
-      // axios.get(`http://localhost:8080/api/medium/${this.state.user_id}`),
+      axios.get(`http://localhost:8080/api/website/${this.state.user_id}`),
+      axios.get(`http://localhost:8080/api/source/${this.state.user_id}`),
+      axios.get(`http://localhost:8080/api/medium/${this.state.user_id}`),
       axios.get(`http://localhost:8080/api/url/${this.state.user_id}`),
     ];
     // declare variables to handle each separate response
-    // let websitesState;
-    // let sourcesState;
-    // let mediaState;
+    let websitesState;
+    let sourcesState;
+    let mediaState;
     let urlsState;
     // make all requests at once
 		axios.all(requests)
 		.then(result => {
 			console.log("success");
       console.log(result.data);
-      // websitesState = result[0].data;
-      // sourcesState = result[1].data;
-      // mediaState = result[2].data;
-      urlsState = result[0].data;
+      websitesState = result[0].data;
+      sourcesState = result[1].data;
+      mediaState = result[2].data;
+      urlsState = result[3].data;
 			this.setState({
-        // websites: websitesState,
-        // sources: sourcesState,
-        // media: mediaState,
+        websites: websitesState,
+        sources: sourcesState,
+        media: mediaState,
         urls: urlsState,
         loaded: true
       });

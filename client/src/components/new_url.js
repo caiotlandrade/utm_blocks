@@ -51,7 +51,6 @@ class New_URL extends Component {
     let websitesArray = this.props.websites;
     let sourcesArray = this.props.sources;
     let mediaArray = this.props.media;
-    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -68,8 +67,8 @@ class New_URL extends Component {
               </option>
             {websitesArray.map((websiteObject, i) => {
               return (
-                <option name={websiteObject.website} value={websiteObject.website}>
-                  {websiteObject.website}
+                <option name={websiteObject.websites} value={websiteObject.websites}>
+                  {websiteObject.websites}
                 </option>
               )
             })}
@@ -88,8 +87,8 @@ class New_URL extends Component {
               </option>
             {sourcesArray.map((sourceObject, i) => {
               return (
-                <option name={sourceObject.source} value={sourceObject.source}>
-                  {sourceObject.source}
+                <option name={sourceObject.sources} value={sourceObject.sources}>
+                  {sourceObject.sources}
                 </option>
               )
             })}
@@ -108,8 +107,8 @@ class New_URL extends Component {
               </option>
             {mediaArray.map((mediumObject, i) => {
               return (
-                <option name={mediumObject.medium} value={mediumObject.medium}>
-                  {mediumObject.medium}
+                <option name={mediumObject.media} value={mediumObject.media}>
+                  {mediumObject.media}
                 </option>
               )
             })}

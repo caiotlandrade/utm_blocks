@@ -15,4 +15,28 @@ Website
         attributes = Object.keys(website.attributes);
     })
 
+    
+// ** CREATE ROUTES ** \\
+router.get('/:user_id', (req, res) => {
+    // const where = {};
+    // for (let key in req.query) {
+    //     if (attributes.includes(key)) {
+    //         where[key] = req.query[key];
+    //     }
+    // }
+
+    //Using the verified where object we constructed, we fetch all cars that have the right attributes
+    Website.where({user_id: req.params.user_id})
+        .fetchAll()
+        .then(website => {
+            console.log(website);
+            res.json(website.models.map(website => website.attributes))
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(500).send(error);
+        })
+});
+
+
 module.exports = router;

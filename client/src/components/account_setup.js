@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router';
 import '../App.css';
 
 class Account_Setup extends Component {
@@ -163,7 +164,7 @@ class WebsiteList extends React.Component {
           <td>{website.website}</td>
           <td>
             <button type="button" onClick={() => { this.props.deleteItem("website", website.id, website.user_id) }}>
-              Delete
+              <Link to="/account_setup">Delete</Link>
             </button>
           </td>
         </tr>
@@ -191,7 +192,7 @@ class SourceList extends React.Component {
           <td>{source.source}</td>
           <td>
             <button type="button" onClick={() => { this.props.deleteItem("source", source.id, source.user_id) }}>
-              Delete
+              <Link to="/account_setup">Delete</Link>
             </button>
           </td>
         </tr>
@@ -218,7 +219,7 @@ class MediumList extends React.Component {
           <td>{medium.medium}</td>
           <td>
             <button type="button" onClick={() => { this.props.deleteItem("medium", medium.id, medium.user_id) }}>
-              Delete
+              <Link to="/account_setup">Delete</Link>
             </button>
           </td>
         </tr>

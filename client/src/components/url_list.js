@@ -52,8 +52,8 @@ class URLTable extends React.Component {
                   <td>{url.final_url}</td>
                   <td>{url.shortened_url}</td>
                   <td>
-                    <button type="button" onClick={() => { this.props.deleteItem("url", url.id, url.final_url) }}>
-                      Delete item
+                    <button type="button" onClick={() => { this.props.deleteItem("url", url.id, url.user_id) }}>
+                      Delete
                     </button>
                   </td>
                 </tr>

@@ -57,5 +57,23 @@ router.post('/', (req, res) => {
         })
 })
 
+// DELETE Endpoint for medium record
+router.delete('/', (req, res) => {
+    console.log(req.body)
+    // Find the URL with the given id and created_at to destroy it
+    Source
+    .where({
+        id: req.body.id,
+        user_id: req.body.user_id
+    })
+    .destroy()
+    .then(url => {
+        res.json(url.attributes);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
+});
+
 
 module.exports = router;

@@ -55,14 +55,14 @@ router.post('/', (req, res) => {
         })
 });
 
-// DELETE Endpoint for new url record
+// DELETE Endpoint for url record
 router.delete('/', (req, res) => {
     console.log(req.body)
     // Find the URL with the given id and created_at to destroy it
     Url
     .where({
-        id: req.body.id
-        // created_at: req.body.created_at
+        id: req.body.id,
+        user_id: req.body.user_id
     })
     .destroy()
     .then(url => {

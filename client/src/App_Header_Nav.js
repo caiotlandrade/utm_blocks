@@ -154,23 +154,36 @@ class App_Header_Nav extends Component {
   }
 
   // this function DELETES an item from the database and excludes it from the state
-  deleteItem(itemType, id, final_url) {
+  deleteItem(itemType, id, user_id) {
     console.log(`http://localhost:8080/api/${itemType}`, "endpoint url")
     console.log({
       id: id,
-      final_url: final_url
+      user_id: user_id
     })
     axios.delete(`http://localhost:8080/api/${itemType}`,
       {
-        data: { id: id, final_url: final_url }
+        data: { id: id, user_id: user_id }
       })
       .then((response) => {
         console.log(response.data)
         let deletedObject = { id: id };
-        let urlsCopy = Array.from(this.state.urls); // copy array before adding new entry
-        let filteredCopy = urlsCopy.filter((url) => url.id != deletedObject.id);
+        // copy array with conditionals before adding new entry
+        if (itemType === "url") {
+          var arrayCopy = Array.from(this.state.urls);
+          var stateArray = "urls";
+        } else if (itemType === "website") {
+          var arrayCopy = Array.from(this.state.websites);
+          var stateArray = "websites";
+        } else if (itemType === "source") {
+          var arrayCopy = Array.from(this.state.sources);
+          var stateArray = "sources";
+        } else if (itemType === "medium") {
+          var arrayCopy = Array.from(this.state.media);
+          var stateArray = "media";
+        };
+        let filteredCopy = arrayCopy.filter((itemType) => itemType.id != deletedObject.id);
         console.log(filteredCopy);
-        this.setState({ urls: filteredCopy });
+        this.setState({ [stateArray]: filteredCopy });
       })
       .catch((error) => {
         console.log(error);

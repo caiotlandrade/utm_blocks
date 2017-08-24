@@ -50,7 +50,7 @@ class Account_Setup extends Component {
       <div className="grid-x grid-margin-x">
         <div className="small-12 medium-6 cell">
           <NewWebsite handleChange={this.handleChange} handleSubmit={this.handleSubmit} newWebsite={this.state.newWebsite} />
-          <WebsiteList websites={this.props.websites} />
+          <WebsiteList websites={this.props.websites} deleteItem = {this.props.deleteItem}/>
         </div>
         <div className="small-12 medium-6 cell">
           <p>something about this type of entry</p>
@@ -59,7 +59,7 @@ class Account_Setup extends Component {
       <div className="grid-x grid-margin-x">
         <div className="small-12 medium-6 cell">
           <NewSource handleChange={this.handleChange} handleSubmit={this.handleSubmit} newSource={this.state.newSource} />
-          <SourceList sources={this.props.sources} />
+          <SourceList sources={this.props.sources} deleteItem = {this.props.deleteItem}/>
         </div>
         <div className="small-12 medium-6 cell">
           <p>something about this type of entry</p>
@@ -68,7 +68,7 @@ class Account_Setup extends Component {
       <div className="grid-x grid-margin-x">
         <div className="small-12 medium-6 cell">
           <NewMedium handleChange={this.handleChange} handleSubmit={this.handleSubmit} newMedium={this.state.newMedium} />
-          <MediumList media={this.props.media} />
+          <MediumList media={this.props.media} deleteItem = {this.props.deleteItem}/>
         </div>
         <div className="small-12 medium-6 cell">
           <p>something about this type of entry</p>
@@ -160,16 +160,12 @@ class WebsiteList extends React.Component {
     let websitesTable = websitesArray.map((website, i) => {
       return (
         <tr>
-          <td>
-            <input  type="checkbox"
-                    key={website.id}
-                    data-id={website.id}
-                    data-created_at={website.created_at}
-                    data-account_id={website.account_id}
-                    data-user_id={website.user_id}
-                    onChange={() => { this.props.changeCheckBox(website.i) }} />
-          </td>
           <td>{website.website}</td>
+          <td>
+            <button type="button" onClick={() => { this.props.deleteItem("website", website.id, website.user_id) }}>
+              Delete
+            </button>
+          </td>
         </tr>
       )
     });
@@ -192,15 +188,12 @@ class SourceList extends React.Component {
     let sourcesTable = sourcesArray.map((source, i) => {
       return (
         <tr>
-          <td>
-            <input  type="checkbox"
-                    key={source.id}
-                    data-id={source.id}
-                    data-account_id={source.account_id}
-                    data-user_id={source.user_id}
-                    onChange={() => { this.props.changeCheckBox(source.i) }} />
-          </td>
           <td>{source.source}</td>
+          <td>
+            <button type="button" onClick={() => { this.props.deleteItem("source", source.id, source.user_id) }}>
+              Delete
+            </button>
+          </td>
         </tr>
       )
     })
@@ -222,16 +215,12 @@ class MediumList extends React.Component {
     let mediaTable = mediaArray.map((medium, i) => {
       return (
         <tr>
-          <td>
-            <input  type="checkbox"
-                    key={medium.id}
-                    data-id={medium.id}
-                    data-created_at={medium.created_at}
-                    data-account_id={medium.account_id}
-                    data-user_id={medium.user_id}
-                    onChange={() => { this.props.changeCheckBox(medium.i) }} />
-          </td>
           <td>{medium.medium}</td>
+          <td>
+            <button type="button" onClick={() => { this.props.deleteItem("medium", medium.id, medium.user_id) }}>
+              Delete
+            </button>
+          </td>
         </tr>
       )
     })

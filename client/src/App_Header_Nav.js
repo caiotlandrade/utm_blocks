@@ -15,12 +15,21 @@ class App_Header_Nav extends Component {
       media: [],
       urls:[],
       loaded: false,
+      newOriginal_url: '',
+      newCampaign_source: '',
+      newCampaign_medium: '',
+      newCampaign_name: '',
+      newCampaign_term: '',
+      newCampaign_content: ''
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.addNewURL = this.addNewURL.bind(this);
     this.addNewWebsite = this.addNewWebsite.bind(this);
     this.addNewSource = this.addNewSource.bind(this);
     this.addNewMedium = this.addNewMedium.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.duplicateUrl = this.duplicateUrl.bind(this);
   }
 
   // getting the initial state from the server
@@ -62,6 +71,35 @@ class App_Header_Nav extends Component {
 	}
 
   // *** FUNCTIONS FOR THE FORMS *** \\
+
+  // this monitors the change and listen to each input value
+  // the function uses using 'data-field' parameter to pass the variable
+  handleChange(event) {
+    let field = event.target.dataset.field;
+    let value = event.target.value;
+    this.setState({
+      [field]: value
+    })
+  }
+
+	// this triggers addNewURL() and empties the form
+  handleSubmit(event) {
+		event.preventDefault();
+		// this calls the function on main component to add the new entry
+    this.addNewURL(  this.state.newOriginal_url, 
+                            this.state.newCampaign_source, 
+                            this.state.newCampaign_medium, 
+                            this.state.newCampaign_name, 
+                            this.state.newCampaign_term, 
+                            this.state.newCampaign_content); 
+    // this erases the form
+		this.setState({ newOriginal_url: '',
+                    newCampaign_source: '',
+                    newCampaign_medium: '',
+                    newCampaign_name: '',
+                    newCampaign_term: '',
+                    newCampaign_content: ''});
+  }
 
   // this function ads a new URL to the urls database and plug the response to the state
   addNewURL(  newOriginal_url, 
@@ -190,6 +228,20 @@ class App_Header_Nav extends Component {
       });
   }
 
+  duplicateUrl( newOriginal_url,
+                newCampaign_source,
+                newCampaign_medium,
+                newCampaign_name,
+                newCampaign_term,
+                newCampaign_content){
+      this.setState({ newOriginal_url: newOriginal_url,
+                      newCampaign_source: newCampaign_source,
+                      newCampaign_medium: newCampaign_medium,
+                      newCampaign_name: newCampaign_name,
+                      newCampaign_term: newCampaign_term,
+                      newCampaign_content: newCampaign_content })
+    }
+
 
   render() {
     console.log(this.state);
@@ -206,16 +258,25 @@ class App_Header_Nav extends Component {
           {React.cloneElement(this.props.children,
             {
               // passing all the state params
+              newOriginal_url: this.state.newOriginal_url,
+              newCampaign_source: this.state.newCampaign_source,
+              newCampaign_medium: this.state.newCampaign_medium,
+              newCampaign_name: this.state.newCampaign_name,
+              newCampaign_term: this.state.newCampaign_term,
+              newCampaign_content: this.state.newCampaign_content,
               urls: this.state.urls,
               websites: this.state.websites,
               sources: this.state.sources,
               media: this.state.media,
               // passing all functions to other components
+              handleChange: this.handleChange,
+              handleSubmit: this.handleSubmit,
               addNewURL: this.addNewURL,
               addNewWebsite: this.addNewWebsite,
               addNewSource: this.addNewSource,
               addNewMedium: this.addNewMedium,
-              deleteItem: this.deleteItem
+              deleteItem: this.deleteItem,
+              duplicateUrl: this.duplicateUrl
             }
           )}
         </div>

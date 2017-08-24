@@ -20,6 +20,7 @@ class App_Header_Nav extends Component {
     this.addNewWebsite = this.addNewWebsite.bind(this);
     this.addNewSource = this.addNewSource.bind(this);
     this.addNewMedium = this.addNewMedium.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   // getting the initial state from the server
@@ -152,6 +153,30 @@ class App_Header_Nav extends Component {
     });
   }
 
+  // this function DELETES an item from the database and excludes it from the state
+  deleteItem(itemType, id, final_url) {
+    console.log(`http://localhost:8080/api/${itemType}`, "endpoint url")
+    console.log({
+      id: id,
+      final_url: final_url
+    })
+    axios.delete(`http://localhost:8080/api/${itemType}`,
+      {
+        data: { id: id, final_url: final_url }
+      })
+      .then((response) => {
+        console.log(response.data)
+        let deletedObject = { id: id };
+        let urlsCopy = Array.from(this.state.urls); // copy array before adding new entry
+        let filteredCopy = urlsCopy.filter((url) => url.id != deletedObject.id);
+        console.log(filteredCopy);
+        this.setState({ urls: filteredCopy });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
 
   render() {
     console.log(this.state);
@@ -176,7 +201,8 @@ class App_Header_Nav extends Component {
               addNewURL: this.addNewURL,
               addNewWebsite: this.addNewWebsite,
               addNewSource: this.addNewSource,
-              addNewMedium: this.addNewMedium
+              addNewMedium: this.addNewMedium,
+              deleteItem: this.deleteItem
             }
           )}
         </div>

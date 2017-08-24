@@ -8,8 +8,7 @@ const express = require('express'),
     Url } = require('../models');
 
 let attributes;
-Url
-    .where({})
+Url .where({})
     .fetch()
     .then(url => {
         attributes = Object.keys(url.attributes);
@@ -54,6 +53,24 @@ router.post('/', (req, res) => {
         .catch(error => {
             res.status(500).send(error);
         })
+});
+
+// DELETE Endpoint for new url record
+router.delete('/', (req, res) => {
+    console.log(req.body)
+    // Find the URL with the given id and created_at to destroy it
+    Url
+    .where({
+        id: req.body.id
+        // created_at: req.body.created_at
+    })
+    .destroy()
+    .then(url => {
+        res.json(url.attributes);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
 });
 
 module.exports = router;

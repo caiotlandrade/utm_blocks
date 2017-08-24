@@ -13,7 +13,8 @@ class URL_List extends Component {
             <URLTable   urls={this.props.urls}
                         websites={this.props.websites}
                         sources={this.props.sources}
-                        media={this.props.media} />
+                        media={this.props.media}
+                        deleteItem = {this.props.deleteItem} />
           </div>
         </div>
       );
@@ -22,7 +23,7 @@ class URL_List extends Component {
 
 class URLTable extends React.Component {
   render() {
-    let urlsArray = this.props.urls; // copying the array coming through props
+    let urlsArray = Array.from(this.props.urls); // copying the array coming through props
     return (
       <div>
         <h3>Table title</h3>
@@ -42,16 +43,6 @@ class URLTable extends React.Component {
             {urlsArray.map((url, i) => {
               return (
                 <tr>
-                  <td>
-                    <input  type="checkbox"
-                            key={url.id}
-                            data-id={url.id}
-                            data-created_at={url.created_at}
-                            data-updated_at={url.updated_at}
-                            data-account_id={url.account_id}
-                            data-user_id={url.user_id}
-                            onChange={() => { this.props.changeCheckBox(url.id) }} />
-                  </td>
                   <td>{url.original_url}</td>
                   <td>{url.campaign_source}</td>
                   <td>{url.campaign_medium}</td>
@@ -60,6 +51,11 @@ class URLTable extends React.Component {
                   <td>{url.campaign_content}</td>
                   <td>{url.final_url}</td>
                   <td>{url.shortened_url}</td>
+                  <td>
+                    <button type="button" onClick={() => { this.props.deleteItem("url", url.id, url.final_url) }}>
+                      Delete item
+                    </button>
+                  </td>
                 </tr>
               )
             })}

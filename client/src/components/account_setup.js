@@ -156,28 +156,29 @@ class NewMedium extends Component {
 
 class WebsiteList extends React.Component {
   render() {
-    let websitesArray = this.props.websites; // copying the array coming through props
+    let websitesArray = Array.from(this.props.websites); // copying the array coming through props
+    let websitesTable = websitesArray.map((website, i) => {
+      return (
+        <tr>
+          <td>
+            <input  type="checkbox"
+                    key={website.id}
+                    data-id={website.id}
+                    data-created_at={website.created_at}
+                    data-account_id={website.account_id}
+                    data-user_id={website.user_id}
+                    onChange={() => { this.props.changeCheckBox(website.i) }} />
+          </td>
+          <td>{website.website}</td>
+        </tr>
+      )
+    });
+
     return (
       <div>
         <table>
           <tbody>
-            {websitesArray.map((website, i) => {
-              return (
-                <tr>
-                  <td>
-                    <input  type="checkbox"
-                            key={website.id}
-                            data-id={website.id}
-                            data-created_at={website.created_at}
-                            data-updated_at={website.updated_at}
-                            data-account_id={website.account_id}
-                            data-user_id={website.user_id}
-                            onChange={() => { this.props.changeCheckBox(website.i) }} />
-                  </td>
-                  <td>{website.website}</td>
-                </tr>
-              )
-            })}
+            {websitesTable}
           </tbody>
         </table>
       </div>
@@ -187,28 +188,27 @@ class WebsiteList extends React.Component {
 
 class SourceList extends React.Component {
   render() {
-    let sourcesArray = this.props.sources; // copying the array coming through props
+    let sourcesArray = Array.from(this.props.sources); // copying the array coming through props
+    let sourcesTable = sourcesArray.map((source, i) => {
+      return (
+        <tr>
+          <td>
+            <input  type="checkbox"
+                    key={source.id}
+                    data-id={source.id}
+                    data-account_id={source.account_id}
+                    data-user_id={source.user_id}
+                    onChange={() => { this.props.changeCheckBox(source.i) }} />
+          </td>
+          <td>{source.source}</td>
+        </tr>
+      )
+    })
     return (
       <div>
         <table>
           <tbody>
-            {sourcesArray.map((source, i) => {
-              return (
-                <tr>
-                  <td>
-                    <input  type="checkbox"
-                            key={source.id}
-                            data-id={source.id}
-                            data-created_at={source.created_at}
-                            data-updated_at={source.updated_at}
-                            data-account_id={source.account_id}
-                            data-user_id={source.user_id}
-                            onChange={() => { this.props.changeCheckBox(source.i) }} />
-                  </td>
-                  <td>{source.source}</td>
-                </tr>
-              )
-            })}
+            {sourcesTable}
           </tbody>
         </table>
       </div>
@@ -218,28 +218,28 @@ class SourceList extends React.Component {
 
 class MediumList extends React.Component {
   render() {
-    let mediaArray = this.props.media; // copying the array coming through props
+    let mediaArray = Array.from(this.props.media); // copying the array coming through props
+    let mediaTable = mediaArray.map((medium, i) => {
+      return (
+        <tr>
+          <td>
+            <input  type="checkbox"
+                    key={medium.id}
+                    data-id={medium.id}
+                    data-created_at={medium.created_at}
+                    data-account_id={medium.account_id}
+                    data-user_id={medium.user_id}
+                    onChange={() => { this.props.changeCheckBox(medium.i) }} />
+          </td>
+          <td>{medium.medium}</td>
+        </tr>
+      )
+    })
     return (
       <div>
         <table>
           <tbody>
-            {mediaArray.map((medium, i) => {
-              return (
-                <tr>
-                  <td>
-                    <input  type="checkbox"
-                            key={medium.id}
-                            data-id={medium.id}
-                            data-created_at={medium.created_at}
-                            data-updated_at={medium.updated_at}
-                            data-account_id={medium.account_id}
-                            data-user_id={medium.user_id}
-                            onChange={() => { this.props.changeCheckBox(medium.i) }} />
-                  </td>
-                  <td>{medium.medium}</td>
-                </tr>
-              )
-            })}
+            {mediaTable}
           </tbody>
         </table>
       </div>

@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
       table.string('email').notNullable().unique();
       table.string('username').notNullable().unique();
       table.integer('account_id').notNullable();
+      table.string('firebase_uid').notNullable().unique();
     });
   };
   

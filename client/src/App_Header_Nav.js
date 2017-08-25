@@ -135,6 +135,7 @@ class App_Header_Nav extends Component {
       console.log(error);
     });
     alert (newFinal_url);
+    window.location = '/url_list';
   }
 
   // this function ads a new WEBSITE to the websites database and plug the response to the state
@@ -193,11 +194,6 @@ class App_Header_Nav extends Component {
 
   // this function DELETES an item from the database and excludes it from the state
   deleteItem(itemType, id, user_id) {
-    console.log(`http://localhost:8080/api/${itemType}`, "endpoint url")
-    console.log({
-      id: id,
-      user_id: user_id
-    })
     axios.delete(`http://localhost:8080/api/${itemType}`,
       {
         data: { id: id, user_id: user_id }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router';
 import '../App.css';
 
 class New_URL extends Component {
@@ -95,8 +96,8 @@ class New_URL extends Component {
                   value={this.props.newCampaign_content}
                   onChange={this.props.handleChange} />
           
-          <span className="input-group-btn">
-            <button className="button" type="submit">Add it to the list</button>
+          <span className="">
+            <button className="button" type="submit">Add new URL</button>
           </span>
         </form>
       </div>

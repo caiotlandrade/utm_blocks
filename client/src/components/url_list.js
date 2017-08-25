@@ -9,7 +9,9 @@ class URL_List extends Component {
         <div className="App">
           <h2>URL list</h2>
           <div>
-            <button className="button"><Link to="/new_url"> New_URL </Link></button>
+            <span className="">
+              <button className="button" type="button"><Link to="/new_url">New URL</Link></button>
+            </span>
             <URLTable   urls={this.props.urls}
                         websites={this.props.websites}
                         sources={this.props.sources}

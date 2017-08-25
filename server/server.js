@@ -1,11 +1,14 @@
 const   express = require('express'),
         bodyParser = require('body-parser'),
         app = express(),
+        path = require('path'),
         PORT = process.env.PORT || 8080; //default port is 8080
 
 //Tell app to use bodyParser when receiving requests
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.use(express.static(path.resolve(__dirname + './../build')))
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -35,3 +38,7 @@ app.use('/api/url', url_routes);
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })
+
+app.get('*', (req, res) => {
+        res.sendFile('index.html',{root: __dirname + './../build'});
+    });

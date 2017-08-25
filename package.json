@@ -1,0 +1,28 @@
+{
+  "name": "utm_blocks_server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "back-end of utm_blocks react app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Caio Andrade https://github.com/caiotlandrade",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caiotlandrade/utm_blocks"
+  },
+  "engines": {
+    "node": "6.11.2",
+    "npm": "3.10.10"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "react",
+    "url builder",
+    "digital marketing"
+  ],
+  "license": "MIT"
+}

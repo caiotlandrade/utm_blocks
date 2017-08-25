@@ -11,94 +11,98 @@ class New_URL extends Component {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit}>
+          <div className="small-12 cell page_title">
+            <h2>New URL</h2>
+          </div>
+          <div className="grid-x grid-margin-x">
+            <div className="small-12 medium-10 cell">
+              <p>Website URL</p>
+              <label>
+                <select   data-field="newOriginal_url" 
+                          className="form-control" 
+                          value={this.props.newOriginal_url}
+                          onChange={this.props.handleChange} 
+                          required>
+                  <option value="">
+                      Select website
+                  </option>
+                {websitesArray.map((websiteObject, i) => {
+                  return (
+                    <option name={websiteObject.website} value={websiteObject.website}>
+                      {websiteObject.website}
+                    </option>
+                  )
+                })}
+                </select>
+              </label>
 
-          <p>Website URL</p>
-          <label>
-            <select   data-field="newOriginal_url" 
-                      className="form-control" 
-                      value={this.props.newOriginal_url}
-                      onChange={this.props.handleChange} 
-                      required>
-              <option value="">
-                  Select website
-              </option>
-            {websitesArray.map((websiteObject, i) => {
-              return (
-                <option name={websiteObject.website} value={websiteObject.website}>
-                  {websiteObject.website}
-                </option>
-              )
-            })}
-            </select>
-          </label>
+              <p>Campaign Source</p>
+              <label>
+                <select   data-field="newCampaign_source" 
+                          className="form-control" 
+                          value={this.props.newCampaign_source}
+                          onChange={this.props.handleChange} 
+                          required>
+                  <option value="">
+                      Select source
+                  </option>
+                {sourcesArray.map((sourceObject, i) => {
+                  return (
+                    <option name={sourceObject.source} value={sourceObject.source}>
+                      {sourceObject.source}
+                    </option>
+                  )
+                })}
+                </select>
+              </label>
 
-          <p>Campaign Source</p>
-          <label>
-            <select   data-field="newCampaign_source" 
-                      className="form-control" 
-                      value={this.props.newCampaign_source}
-                      onChange={this.props.handleChange} 
-                      required>
-              <option value="">
-                  Select source
-              </option>
-            {sourcesArray.map((sourceObject, i) => {
-              return (
-                <option name={sourceObject.source} value={sourceObject.source}>
-                  {sourceObject.source}
-                </option>
-              )
-            })}
-            </select>
-          </label>
+              <p>Campaign Medium</p>
+              <label>
+                <select   data-field="newCampaign_medium" 
+                          className="form-control" 
+                          value={this.props.newCampaign_medium}
+                          onChange={this.props.handleChange} 
+                          required>
+                  <option value="">
+                      Select medium
+                  </option>
+                {mediaArray.map((mediumObject, i) => {
+                  return (
+                    <option name={mediumObject.medium} value={mediumObject.medium}>
+                      {mediumObject.medium}
+                    </option>
+                  )
+                })}
+                </select>
+              </label>
 
-          <p>Campaign Medium</p>
-          <label>
-            <select   data-field="newCampaign_medium" 
-                      className="form-control" 
-                      value={this.props.newCampaign_medium}
-                      onChange={this.props.handleChange} 
-                      required>
-              <option value="">
-                  Select medium
-              </option>
-            {mediaArray.map((mediumObject, i) => {
-              return (
-                <option name={mediumObject.medium} value={mediumObject.medium}>
-                  {mediumObject.medium}
-                </option>
-              )
-            })}
-            </select>
-          </label>
+              <p>Campaign Name</p>
+              <input  data-field="newCampaign_name"
+                      type="text"
+                      className="form-control"
+                      placeholder="Product, promo code, or slogan"
+                      value={this.props.newCampaign_name}
+                      onChange={this.props.handleChange} />
 
-          <p>Campaign Name</p>
-          <input  data-field="newCampaign_name"
-                  type="text"
-                  className="form-control"
-                  placeholder="Product, promo code, or slogan"
-                  value={this.props.newCampaign_name}
-                  onChange={this.props.handleChange} />
+              <p>Campaign Term</p>
+              <input  data-field="newCampaign_term"
+                      type="text"
+                      className="form-control"
+                      placeholder="Identify the paid keywords"
+                      value={this.props.newCampaign_term}
+                      onChange={this.props.handleChange} />
 
-          <p>Campaign Term</p>
-          <input  data-field="newCampaign_term"
-                  type="text"
-                  className="form-control"
-                  placeholder="Identify the paid keywords"
-                  value={this.props.newCampaign_term}
-                  onChange={this.props.handleChange} />
-
-          <p>Campaign Content</p>
-          <input  data-field="newCampaign_content"
-                  type="text"
-                  className="form-control"
-                  placeholder="Use to differentiate ad versions"
-                  value={this.props.newCampaign_content}
-                  onChange={this.props.handleChange} />
-          
-          <span className="">
-            <button className="button" type="submit">Add new URL</button>
-          </span>
+              <p>Campaign Content</p>
+              <input  data-field="newCampaign_content"
+                      type="text"
+                      className="form-control"
+                      placeholder="Use to differentiate ad versions"
+                      value={this.props.newCampaign_content}
+                      onChange={this.props.handleChange} />
+              
+              <button className="button float-right" type="submit">Add new URL</button>
+            </div>
+          </div>
         </form>
       </div>
     );

@@ -282,14 +282,14 @@ class App_Header_Nav extends Component {
     return (
       <div>
         <header className="App top-bar grid-x">
-          <h2 className="top-bar_logo">Header</h2>
+          <h2 className="top-bar_logo">UTM Blocks</h2>
         </header>
         <div className="App-body grid-x">
           <nav className="side_menu vertical menu columns medium-2 small-12 cell">
             <ul className="small-12">
               <li className="small-12"><Link to="/url_list">URL List</Link></li>
               <li className="small-12"><Link to="/account_setup">Account Setup</Link></li>
-              <li className="small-12"><Link to="/settings">Settings</Link></li>
+              {/* <li className="small-12"><Link to="/settings">Settings</Link></li> */}
               <li className="small-12"><Link to="/new_url">New URL</Link></li>
             </ul>
           </nav>

@@ -7,6 +7,7 @@
   color: white;
   position: fixed;
   top: 0px;
+  z-index: 3;
 }
 
 .top-bar_logo {
@@ -16,10 +17,41 @@
 .App-body {
   max-width: 94%;
   margin: auto;
-  margin-top: 120px;
+  margin: 120px 0 60px 0;
 }
 
-.side_menu{
-
+.side_menu ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
+
+.button_link{
+  color: white;
+}
+
+.page_title{
+  margin: 0 0 40px 0;
+}
+
+.accountSetup-category{
+  margin: 40px 0;
+}
+
+.accountSetup-description{
+  margin: 80px 0;
+}
+
+.accountSetup-table{
+  margin-bottom: 50px;
+}
+
+.accountSetup-item_left{
+  padding-left: 30px;
+}
+
+.accountSetup-item_right{
+  right: 10px;
+}
+
 

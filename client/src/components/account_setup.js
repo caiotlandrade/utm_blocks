@@ -45,34 +45,34 @@ class Account_Setup extends Component {
     return (
 
 <div>
-      <div className="small-12 cell">
+      <div className="small-12 cell page_title">
         <h2>Account Setup</h2>
       </div>
-      <div className="grid-x grid-margin-x">
-        <div className="small-12 medium-6 cell">
+      <div className="grid-x grid-margin-x account-category">
+        <div className="small-12 medium-8 cell">
           <NewWebsite handleChange={this.handleChange} handleSubmit={this.handleSubmit} newWebsite={this.state.newWebsite} />
           <WebsiteList websites={this.props.websites} deleteItem = {this.props.deleteItem}/>
         </div>
-        <div className="small-12 medium-6 cell">
-          <p>something about this type of entry</p>
+        <div className="small-12 medium-4 cell accountSetup-description">
+          <p>List here all URLs of your digital assets, for instance, your main website, the blog and landing pages domain.</p>
         </div>
       </div>
       <div className="grid-x grid-margin-x">
-        <div className="small-12 medium-6 cell">
+        <div className="small-12 medium-8 cell">
           <NewSource handleChange={this.handleChange} handleSubmit={this.handleSubmit} newSource={this.state.newSource} />
           <SourceList sources={this.props.sources} deleteItem = {this.props.deleteItem}/>
         </div>
-        <div className="small-12 medium-6 cell">
-          <p>something about this type of entry</p>
+        <div className="small-12 medium-4 cell accountSetup-description">
+          <p>Identify the advertiser, site, publication, etc. that is sending traffic to your property, for example: google, newsletter4, billboard.</p>
         </div>
       </div>
       <div className="grid-x grid-margin-x">
-        <div className="small-12 medium-6 cell">
+        <div className="small-12 medium-8 cell">
           <NewMedium handleChange={this.handleChange} handleSubmit={this.handleSubmit} newMedium={this.state.newMedium} />
           <MediumList media={this.props.media} deleteItem = {this.props.deleteItem}/>
         </div>
-        <div className="small-12 medium-6 cell">
-          <p>something about this type of entry</p>
+        <div className="small-12 medium-4 cell accountSetup-description">
+          <p>The advertising or marketing medium, for example: cpc, banner, email newsletter.</p>
         </div>
       </div>
       </div>
@@ -89,18 +89,16 @@ class NewWebsite extends Component {
     return (
       <div>
         <form data-form="newWebsite" onSubmit={this.props.handleSubmit}>
-          <p>Common Websites</p>
-          <input  data-field="newWebsite"
-                  type="text"
-                  className="form-control"
-                  placeholder="Add a new common website"
-                  value={this.props.newWebsite}
-                  onChange={this.props.handleChange} />
-          <span className="input-group-btn">
-            <button className="button" type="submit">
+          <h3>Common Websites</h3>
+            <input  data-field="newWebsite"
+                    type="text"
+                    className=""
+                    placeholder="Add a new common website"
+                    value={this.props.newWebsite}
+                    onChange={this.props.handleChange} />
+            <button className="button float-right" type="submit">
               Add a new website
             </button>
-          </span>
         </form>
       </div>
     );
@@ -113,18 +111,16 @@ class NewSource extends Component {
     return (
       <div>
         <form data-form="newSource" onSubmit={this.props.handleSubmit}>
-          <p>Default Sources</p>
+          <h3>Default Sources</h3>
           <input  data-field="newSource"
                   type="text"
                   className="form-control"
                   placeholder="Add a new default source"
                   value={this.props.newSource}
-                  onChange={this.props.handleChange} />
-          <span className="input-group-btn">
-            <button className="button" type="submit">
+                  onChange={this.props.handleChange} /> 
+            <button className="button float-right" type="submit">
               Add a new source
             </button>
-          </span>
         </form>
       </div>
     );
@@ -137,18 +133,16 @@ class NewMedium extends Component {
     return (
       <div>
         <form data-form="newMedium" onSubmit={this.props.handleSubmit}>
-          <p>Default Media</p>
+          <h3>Default Media</h3>
           <input  data-field="newMedium"
                   type="text"
                   className="form-control"
                   placeholder="Add a new default medium"
                   value={this.props.newMedium}
                   onChange={this.props.handleChange} />
-          <span className="input-group-btn">
-            <button className="button" type="submit">
-              Add a new medium
-            </button>
-          </span>
+          <button className="button float-right" type="submit">
+            Add a new medium
+          </button>
         </form>
       </div>
     );
@@ -161,9 +155,9 @@ class WebsiteList extends React.Component {
     let websitesTable = websitesArray.map((website, i) => {
       return (
         <tr>
-          <td>{website.website}</td>
-          <td>
-            <button type="button" onClick={() => { this.props.deleteItem("website", website.id, website.user_id) }}>
+          <td className="accountSetup-item_left">{website.website}</td>
+          <td className="accountSetup-item_right">
+            <button type="button float-right" onClick={() => { this.props.deleteItem("website", website.id, website.user_id) }}>
               <Link to="/account_setup">Delete</Link>
             </button>
           </td>
@@ -173,7 +167,7 @@ class WebsiteList extends React.Component {
 
     return (
       <div>
-        <table>
+        <table className="accountSetup-table">
           <tbody>
             {websitesTable}
           </tbody>
@@ -189,9 +183,9 @@ class SourceList extends React.Component {
     let sourcesTable = sourcesArray.map((source, i) => {
       return (
         <tr>
-          <td>{source.source}</td>
-          <td>
-            <button type="button" onClick={() => { this.props.deleteItem("source", source.id, source.user_id) }}>
+          <td className="accountSetup-item_left">{source.source}</td>
+          <td className="accountSetup-item_right">
+            <button type="button float-right" onClick={() => { this.props.deleteItem("source", source.id, source.user_id) }}>
               <Link to="/account_setup">Delete</Link>
             </button>
           </td>
@@ -200,7 +194,7 @@ class SourceList extends React.Component {
     })
     return (
       <div>
-        <table>
+        <table className="accountSetup-table">
           <tbody>
             {sourcesTable}
           </tbody>
@@ -216,9 +210,9 @@ class MediumList extends React.Component {
     let mediaTable = mediaArray.map((medium, i) => {
       return (
         <tr>
-          <td>{medium.medium}</td>
-          <td>
-            <button type="button" onClick={() => { this.props.deleteItem("medium", medium.id, medium.user_id) }}>
+          <td className="accountSetup-item_left">{medium.medium}</td>
+          <td className="accountSetup-item_right">
+            <button type="button float-right" onClick={() => { this.props.deleteItem("medium", medium.id, medium.user_id) }}>
               <Link to="/account_setup">Delete</Link>
             </button>
           </td>
@@ -227,7 +221,7 @@ class MediumList extends React.Component {
     })
     return (
       <div>
-        <table>
+        <table className="accountSetup-table">
           <tbody>
             {mediaTable}
           </tbody>
